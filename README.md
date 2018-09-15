@@ -25,3 +25,15 @@ socket.io実験。ソケット通信によるクライアント・サーバー�
 
 参考：
 https://qiita.com/n0bisuke/items/bbdf9c57de617d052012
+
+## Electron01
+electronを使ったデスクトップアプリのひな型。node.jsの知識さえあればデスクトップアプリが創れるというコンセプトらしい。
+
+### 準備
+npm -g install electron-prebuilt
+
+### 起動方法：
+```
+electron ../Electron01
+```
+※nodeは使わない。引数はフォルダ。
