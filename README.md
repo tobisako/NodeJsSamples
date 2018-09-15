@@ -16,3 +16,12 @@ http://localhost:3000/memo.html
 express4のバージョンアップの為。
 以下に詳しい。
 https://mmiyauchi.com/?p=333
+
+express4 - github
+https://github.com/expressjs/body-parser
+
+### Socket01
+socket.io実験。ソケット通信によるクライアント・サーバー簡易チャット機能。
+
+参考：
+https://qiita.com/n0bisuke/items/bbdf9c57de617d052012
