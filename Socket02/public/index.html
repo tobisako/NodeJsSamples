@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Async test</title>
+
+</head>
+<body class="mainpage">
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket;
+    function connectSocket() {
+      socket = io();
+      socket.on('message', function(msg) {
+        append(msg);
+      });
+      socket.on('progress', (msg) => {
+        progress(msg);
+      });
+    }
+    function testFunc() {
+      append("usoyan.");
+    }
+    function append(msg) {
+      //$('#messages').append($('<li>').text(msg));
+      var ul = document.getElementById("messages");
+      var li = document.createElement("li");
+      li.innerHTML = msg;
+      ul.appendChild(li);
+      bottom();
+    }
+    function bottom() {
+      var obj2 = document.getElementById("msgarea");
+      obj2.scrollTop = obj2.scrollHeight;
+    }
+    function start() {
+      socket.emit('start', '');
+      append("send START.");
+    }
+    function reset() {
+      socket.emit('reset', '');
+      append("send RESET.");
+    }
+    function progress(msg) {
+      var j = JSON.parse(msg);
+      var pg = `pg${j.num}`;
+      var pb = document.getElementById(pg);
+      pb.value = j.val;
+      append(`progress kousin desuwa ${j.num}, ${j.val}.`);
+    }
+  </script>
+
+  <header>
+  </header>
+
+  <main>
+
+  <div id="eyeCatcher">
+    <h2>Sectioning Content Elements</h2>
+    <p>
+      <a href="index.html#sec1-1">&lt;ほげ１&gt;</a>
+      <a href="index.html#sec1-2">&lt;ほげ２&gt;</a>
+      <a href="index.html#sec1-3">&lt;ほげ３&gt;</a>
+      <a href="index.html#sec1-4">&lt;ほげ４&gt;</a>
+    </p>
+  </div>
+
+  <article>
+    <section>
+      <h1>セクション１</h1>
+      <p>Progress: <progress id="pg0" max=100><span>0</span>%</progress></p>
+      <p>Progress: <progress id="pg1" max=100><span>0</span>%</progress></p>
+      <p>Progress: <progress id="pg2" max=100><span>0</span>%</progress></p>
+      <h2>p2</h2>
+      MESSAGE LOG
+      <div class="example" id="msgarea">
+        <ul id="messages"></ul>
+      </div>
+    </section>
+
+    <section>
+      <h1>セクション２</h1>
+      <input type="button" value="socket init" onclick="connectSocket();"/><br />
+      <input type="button" value="start" onclick="start();"/><br />
+      <input type="button" value="reset" onclick="reset();"/><br />
+    </section>
+
+  </article>
+
+  </main>
+
+</body>
+</html>
