@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <style type="text/css">
+    #text-button {
+      display: block;
+      cursor: pointer;
+      width: 160px;
+      text-align: center;
+      border: 1px solid #232323;
+    }      
+  </style>
+  <head>
+    <meta charset="UTF-8">
+    <title>page2</title>
+    <script>
+      function OnButtonClick() {
+        console.log("HOGE!")
+      }
+      </script>
+    </head>
+  <body>
+    <button id="button-test" onclick="OnButtonClick();">
+      クリック
+    </button>
+    page2
+    <hr>
+    <form method="POST" action="/shop/p2/confirm">
+      <div>
+        <label for="name">会社名：</label>
+        <input type="text" id="name" name="name"/>
+      </div>
+      <div>
+        <input type="submit" value="確認" />
+      </div>
+    </form>
+  </body>
+</html>
